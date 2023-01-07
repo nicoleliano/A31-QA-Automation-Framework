@@ -82,4 +82,10 @@ public class BaseTest {
         avatarIcon.click();
 
     }
+
+    public static void login(String email, String password){
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+    }
 }
