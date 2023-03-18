@@ -9,9 +9,8 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class Homework16 {
-
     @Test
-    public static void clickRegistrationLink(){
+    public static void clickRegistrationLinkTest(){
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 

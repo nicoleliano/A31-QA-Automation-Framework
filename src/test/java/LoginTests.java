@@ -1,79 +1,74 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
-public class LoginTests {
+public class LoginTests extends BaseTest {
 
     @Test
-    public static void LoginEmptyEmailPasswordTest(){
+    public static void loginEmptyEmailPasswordTest(){
 
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        navigateToPage();
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
-        driver.quit();
 
     }
 
     @Test
-    public static void LoginValidEmailPasswordTest() throws InterruptedException {
+    public static void loginValidEmailValidPasswordTest() throws InterruptedException {
 
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        navigateToPage();
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.sendKeys("demo@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
 
         Thread.sleep(2000);
 
-        WebElement avatarIcon = driver.findElement(By.className("avatar"));
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 
-        driver.quit();
-
     }
-
     @Test
-    public static void LoginInvalidEmail(){
+    public static void loginInvalidEmailValidPasswordTest(){
 
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        navigateToPage();
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+        provideEmail("invalid@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.sendKeys("demoinvalid@class.com");
+    }
+    @Test
+    public static void updateProfileNameTest () throws InterruptedException {
 
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.sendKeys("te$t$tudent");
+        navigateToPage();
 
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        loginButton.click();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
 
-        Assert.assertTrue(emailField.isDisplayed());
+        Thread.sleep(2000);
 
-        driver.quit();
+        clickAvatarIcon();
+
+        String randomName = generateRandomName();
+
+        provideCurrentPassword("te$t$tudent");
+        provideProfileName(randomName);
+        clickSaveButton();
+
+        Thread.sleep(2000);
+
+        WebElement actualProfileName = driver.findElement(By.cssSelector("a.view-profile>span"));
+        Assert.assertEquals(actualProfileName.getText(), randomName);
 
     }
 
