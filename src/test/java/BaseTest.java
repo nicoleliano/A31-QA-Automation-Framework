@@ -50,6 +50,13 @@ public class BaseTest {
         emailField.sendKeys(email);
     }
 
+    public static void login(String email, String password){
+        navigateToPage();
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+    }
+
     public static void navigateToPage() {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
