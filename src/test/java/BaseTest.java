@@ -132,4 +132,15 @@ public class BaseTest {
         playlist.click();
     }
 
+    public static void doubleClickSong(){
+        WebElement firstSong = driver.findElement(By.xpath("//span[contains(text(), 'Dark Days')]"));
+        Actions actions = new Actions(driver);
+        actions.doubleClick(firstSong).perform();
+    }
+
+    public static void verifyVisualizer(){
+        WebElement visualizer = driver.findElement(By.cssSelector("img[alt='Sound bars']"));
+        Assert.assertTrue(visualizer.isDisplayed());
+    }
+
 }
