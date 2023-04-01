@@ -4,11 +4,7 @@ public class Homework17 extends BaseTest {
 
     @Test
     public static void addSongToPlaylistTest() throws InterruptedException {
-        navigateToPage();
-
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        login("nicoleliano1@yahoo.com", "1te$tpa$$word");
 
         Thread.sleep(2000);
         addNewPlaylistButton();

@@ -4,7 +4,7 @@ public class Homework18 extends BaseTest {
 
     @Test
     public static void playSong() throws InterruptedException {
-        login("demo@class.com", "te$t$tudent");
+        login("nicoleliano1@yahoo.com", "1te$tpa$$word");
 
         Thread.sleep(2000);
 

@@ -7,14 +7,14 @@ public class ProfileTests extends BaseTest {
 
     @Test
     public static void updateProfileNameTest () throws InterruptedException {
-        login("demo@class.com", "te$t$tudent");
+        login("nicoleliano1@yahoo.com", "1te$tpa$$word");
 
         Thread.sleep(2000);
 
         clickAvatarIcon();
         String randomName = generateRandomName();
 
-        provideCurrentPassword("te$t$tudent");
+        provideCurrentPassword("1te$tpa$$word");
         provideProfileName(randomName);
         clickSaveButton();
 

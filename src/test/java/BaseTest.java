@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -123,7 +124,7 @@ public class BaseTest {
     }
 
     public static void picksPlaylist(){
-       WebElement newPlaylist = driver.findElement(By.xpath("//*[@id=\"app\"]/nav/ul/li[4]/ul/li[9]"));
+       WebElement newPlaylist = driver.findElement(By.cssSelector("li.has-sub>ul.submenu>li.playlist"));
        newPlaylist.click();
     }
 
@@ -141,6 +142,11 @@ public class BaseTest {
     public static void verifyVisualizer(){
         WebElement visualizer = driver.findElement(By.cssSelector("img[alt='Sound bars']"));
         Assert.assertTrue(visualizer.isDisplayed());
+    }
+
+    public static void clickAlbumTabInfoPanel(){
+        WebElement albumTab = driver.findElement(By.cssSelector("#extraTabAlbum"));
+        albumTab.click();
     }
 
 }

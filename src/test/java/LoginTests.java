@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginValidEmailValidPasswordTest() throws InterruptedException {
-        login("demo@class.com", "te$t$tudent");
+        login("nicoleliano1@yahoo.com", "1te$tpa$$word");
 
         Thread.sleep(2000);
 

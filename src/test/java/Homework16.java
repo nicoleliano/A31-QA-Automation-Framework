@@ -8,12 +8,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework16 {
+public class Homework16 extends BaseTest {
     @Test
     public static void clickRegistrationLinkTest(){
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         String url = "https://bbb.testpro.io/";
         driver.get(url);
 
