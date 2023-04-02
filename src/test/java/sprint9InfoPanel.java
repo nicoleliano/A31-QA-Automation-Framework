@@ -52,5 +52,3 @@ public class sprint9InfoPanel extends BaseTest {
 
     }
 
-
-}
