@@ -149,4 +149,50 @@ public class BaseTest {
         albumTab.click();
     }
 
+    public static void clickLyricTabInfoPanel(){
+        WebElement lyricTab = driver.findElement(By.cssSelector("#extraTabLyrics"));
+        lyricTab.click();
+    }
+
+    public static void verifyAlbumNameSame(){
+        WebElement infoAlbum = driver.findElement(By.cssSelector("article.album-info>h1.name>span"));
+        String infoAlbumName = infoAlbum.getText();
+        WebElement visualizerAlbum = driver.findElement(By.cssSelector("p>a.album"));
+        String visualizerAlbumName = visualizerAlbum.getText();
+        Assert.assertEquals(infoAlbumName, visualizerAlbumName);
+    }
+
+    public static void verifyLyricsPresent(){
+        WebElement lyricBody = driver.findElement(By.cssSelector("p.none"));
+        String lyricBodyText = lyricBody.getText();
+        String lyricNotAvailable = "No lyrics available. Are you listening to Bach?";
+        Assert.assertNotEquals(lyricBodyText, lyricNotAvailable);
+    }
+
+    public static void verifyArtistNamePresent(){
+        WebElement artistName = driver.findElement(By.cssSelector("p.meta>a.artist"));
+        Assert.assertTrue(artistName.isDisplayed());
+    }
+
+    public static void clickInfoPanelButtonTest() throws InterruptedException {
+        WebElement lyricTab = driver.findElement(By.cssSelector("#extraTabLyrics"));
+        Assert.assertTrue(lyricTab.isDisplayed());
+
+        Thread.sleep(2000);
+
+        WebElement infoPanelButton = driver.findElement(By.cssSelector("button[title = 'View song information']"));
+        infoPanelButton.click();
+
+        Thread.sleep(2000);
+
+        Assert.assertFalse(lyricTab.isDisplayed());
+
+    }
+
+    public static void clickShuffleButtonInfoPanel(){
+        WebElement shuffleBtn = driver.findElement(By.cssSelector("article.album-info>h1.name>button.shuffle.control>i.fa-random"));
+        shuffleBtn.click();
+        Assert.assertTrue(shuffleBtn.isDisplayed());
+    }
+
 }
